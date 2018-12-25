@@ -83,3 +83,8 @@ MySQL创建数据库与创建用户以及授权
 7、drop database [schema名称|数据库名称];--删除数据库
 
 数据库登录：mysql -h 144.48.9.176 -u uptsuser -p
+
+
+服务器信号灯超时：
+需要修改一下/etc/ssh/sshd_config配置文件 ClientAliveInterval 300（默认为0，这里如果选项前面有“#”，表示被注释掉需要打开，同时TCPKeepAlive 也需要设置为yes）这个参数300的是意思是每5分钟，服务器向客户端发一个消息，用于保持连接，当然数值要比你的三个防火墙超时时间的最小值小，否则还没等发送空闲包，连接就被断开了。 
+????????修改之后使用service sshd reload,重新启动一下服务就可以了。
