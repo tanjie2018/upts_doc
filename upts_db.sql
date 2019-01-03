@@ -64,3 +64,28 @@ CREATE TABLE `upts_trade_info` (
 -- ----------------------------
 -- Records of upts_trade_info
 -- ----------------------------
+
+-- ----------------------------
+-- Table structure for `upts_trade_info_his`
+-- ----------------------------
+DROP TABLE IF EXISTS `upts_trade_info_his`;
+CREATE TABLE `upts_trade_info_his` (
+  `order_id` varchar(20) COLLATE utf8_bin NOT NULL,
+  `btime` varchar(20) COLLATE utf8_bin DEFAULT '',
+  `bprice` double(30,3) DEFAULT NULL,
+  `sprice` double(30,3) DEFAULT NULL,
+  `stime` varchar(20) COLLATE utf8_bin DEFAULT '',
+  `sider` varchar(20) COLLATE utf8_bin DEFAULT '' COMMENT 'buy,sell',
+  `size` int(5) DEFAULT NULL,
+  `high` double(30,3) DEFAULT NULL,
+  `low` double(30,3) DEFAULT NULL,
+  `flag` varchar(1) COLLATE utf8_bin DEFAULT NULL COMMENT '0:建；1:平',
+  `profit` decimal(14,3) DEFAULT NULL,
+  `rang` decimal(14,3) DEFAULT NULL,
+  `bsum` double(30,3) DEFAULT NULL,
+  `ssum` double(30,3) DEFAULT NULL,
+  `strategy` varchar(20) COLLATE utf8_bin DEFAULT NULL,
+  `create_time` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+  `update_time` timestamp(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3),
+  PRIMARY KEY (`order_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin;
