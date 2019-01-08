@@ -88,3 +88,11 @@ MySQL创建数据库与创建用户以及授权
 服务器信号灯超时：
 需要修改一下/etc/ssh/sshd_config配置文件 ClientAliveInterval 300（默认为0，这里如果选项前面有“#”，表示被注释掉需要打开，同时TCPKeepAlive 也需要设置为yes）这个参数300的是意思是每5分钟，服务器向客户端发一个消息，用于保持连接，当然数值要比你的三个防火墙超时时间的最小值小，否则还没等发送空闲包，连接就被断开了。 
 ????????修改之后使用service sshd reload,重新启动一下服务就可以了。
+create database btcdb default character set utf8 collate utf8_general_ci;
+create database ltcdb default character set utf8 collate utf8_general_ci;
+grant select,insert,update,delete,create on btcdb.* to uptsuser;
+grant select,insert,update,delete,create on ltcdb.* to uptsuser;
+flush  privileges;
+set password for root@localhost = password('tanj_5');
+
+跳过密码：在/etc目录下文件my.cnf中新增skip-grant-tables，重启：service mysqld restart
