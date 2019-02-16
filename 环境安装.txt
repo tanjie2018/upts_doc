@@ -77,6 +77,7 @@ MySQL创建数据库与创建用户以及授权
 　　密码8位以上，包括：大写字母、小写字母、数字、特殊字符
 　　%：匹配所有主机，该地方还可以设置成‘localhost’，代表只能本地访问，例如root账户默认为‘localhost‘
 3、grant drop,select,insert,update,delete,create on uptsdb.* to uptsuser;--用户授权数据库
+     grant all privileges on uptsdb.* to uptsuser;
 　　*代表整个数据库
 4、flush  privileges;--立即启用修改
 5、revoke all on *.* from tester;--取消用户所有数据库（表）的所有权限
@@ -91,8 +92,8 @@ MySQL创建数据库与创建用户以及授权
 ????????修改之后使用service sshd reload,重新启动一下服务就可以了。
 create database btcdb default character set utf8 collate utf8_general_ci;
 create database ltcdb default character set utf8 collate utf8_general_ci;
-grant drop,select,insert,update,delete,create on btcdb.* to uptsuser;
-grant select,insert,update,delete,create on ltcdb.* to uptsuser;
+grant all privileges on btcdb.* to uptsuser;
+grant all privileges on ltcdb.* to uptsuser;
 flush  privileges;
 set password for root@localhost = password('tanj_5');
 
